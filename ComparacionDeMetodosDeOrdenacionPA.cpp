@@ -186,7 +186,7 @@ void ingresarDatosArreglo( int arreglo1[], int arreglo2[], int capacidad ) {
 	}
 }
 
-//FUNCION INSERCION: INSERCION BINARIA
+//FUNCION INSERCION BINARIA
 void insercionBinaria( int arreglo[], int capacidad ) {
 	int aux, izq, der, m;
 	for ( int i = 1; i < capacidad; i++ ) {
