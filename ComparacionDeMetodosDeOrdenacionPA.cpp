@@ -5,13 +5,15 @@
 #include <chrono>
 using namespace std;
 
-void ingresarDatosArreglo( int[], int[], int );
-void insercionBinaria( int[], int );
-void metodoShell( int[], int );
+void ingresarDatosArreglo(int[], int[], int);
+void insercionBinaria(int[], int);
+void metodoShell(int[], int);
+void interDirDer(int[], int);
+void seleccionDir(int[], int);
 
 int main() {
 	srand(time(NULL));
-	cout << "Semilla inicializada" << endl << endl;
+	//cout << "Semilla inicializada" << endl << endl;
 	
 	int opcion1, opcion2, opcion3;
 	int arregloPrincipal[200000];
@@ -21,21 +23,26 @@ int main() {
 	int arreglo4[200000];
 	
 	/*
+	//SE GENERA UN ARREGLO INVERSAMENTE ORDENADO
 	for ( int i = 0; i < 200000; i++ ) {
 		arregloPrincipal[i] = 200000 - i;
 	}
 	*/
 	
+	
 	//SE GENERA UN ARREGLO DE 200 000 ELEMENTOS
 	for ( int i = 0; i < 200000; i++ ) {
 		arregloPrincipal[i] = rand() % (200000 + 1);
 	}
+	
 
 	do {
 		cout << "// ESCOGE UN METODO DE ORDENACION //" << endl << endl;
 		cout << "1. Insercion binaria" << endl;
 		cout << "2. Metodo de shell" << endl;
-		cout << "3. Salir del programa" << endl;
+		cout << "3. Bubble sort" << endl;
+		cout << "4. Seleccion directa" << endl;
+		cout << "5. Salir del programa" << endl;
 		cin >> opcion1;
 		
 		switch ( opcion1 ) {
@@ -168,26 +175,154 @@ int main() {
 				} while ( opcion3 != 5 );
 				break;
 			case 3:
+				do {
+					cout << "// ESCOGE LA CANTIDAD DE ELEMENTOS //" << endl << endl;
+					cout << "1. 1000 elementos" << endl;
+					cout << "2. 10000 elementos" << endl;
+					cout << "3. 100000 elementos" << endl;
+					cout << "4. 200000 elementos" << endl;
+					cout << "5. Salir del menu" << endl;
+					cin >> opcion3;
+					
+					switch ( opcion3 ) {
+						case 1:
+							ingresarDatosArreglo(arregloPrincipal, arreglo1, 1000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                interDirDer(arreglo1, 1000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Bubble Sort: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 2:
+							ingresarDatosArreglo(arregloPrincipal, arreglo2, 10000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                interDirDer(arreglo2, 10000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Bubble Sort: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 3:
+							ingresarDatosArreglo(arregloPrincipal, arreglo3, 100000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                interDirDer(arreglo3, 100000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Bubble Sort: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 4:
+							ingresarDatosArreglo(arregloPrincipal, arreglo4, 200000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                interDirDer(arreglo4, 200000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Bubble Sort: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 5:
+							cout << "Saliendo del menu ..." << endl << endl;
+							break;
+						default:
+							cout << "Error: Ingreso un numero invalido" << endl;
+							break;
+					}
+				} while ( opcion3 != 5 );
+				break;
+			case 4:
+				do {
+					cout << "// ESCOGE LA CANTIDAD DE ELEMENTOS //" << endl << endl;
+					cout << "1. 1000 elementos" << endl;
+					cout << "2. 10000 elementos" << endl;
+					cout << "3. 100000 elementos" << endl;
+					cout << "4. 200000 elementos" << endl;
+					cout << "5. Salir del menu" << endl;
+					cin >> opcion3;
+					
+					switch ( opcion3 ) {
+						case 1:
+							ingresarDatosArreglo(arregloPrincipal, arreglo1, 1000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                seleccionDir(arreglo1, 1000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Seleccion Directa: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 2:
+							ingresarDatosArreglo(arregloPrincipal, arreglo2, 10000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                seleccionDir(arreglo2, 10000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Seleccion Directa: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 3:
+							ingresarDatosArreglo(arregloPrincipal, arreglo3, 100000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                seleccionDir(arreglo3, 100000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Seleccion Directa: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 4:
+							ingresarDatosArreglo(arregloPrincipal, arreglo4, 200000);
+							{
+                                auto start = chrono::high_resolution_clock::now();
+                                seleccionDir(arreglo4, 200000);
+                                auto end = chrono::high_resolution_clock::now();
+                                chrono::duration<double> duration = end - start;
+                                cout << fixed << setprecision(10);
+                                cout << "Tiempo de ejecucion Seleccion Directa: " << duration.count() << " segundos" << endl;
+                            }
+							break;
+						case 5:
+							cout << "Saliendo del menu ..." << endl << endl;
+							break;
+						default:
+							cout << "Error: Ingreso un numero invalido" << endl;
+							break;
+					}
+				} while ( opcion3 != 5 );
+				break;
+			case 5:
 				cout << "Saliendo del programa ..." << endl;
 				break;
 			default:
 				cout << "Error: Ingreso un numero invalido" << endl;
 				break;
 		}
-	} while ( opcion1 != 3 );
+	} while ( opcion1 != 5 );
 	
 	return 0;
 }
 
 //FUNCION PARA COPIAR LOS DATOS DEL ARREGLO ORIGINAL A UN ARREGLO COPIA
-void ingresarDatosArreglo( int arreglo1[], int arreglo2[], int capacidad ) {
+void ingresarDatosArreglo(int arreglo1[], int arreglo2[], int capacidad) {
 	for ( int i = 0; i < capacidad; i++ ) {
 		arreglo2[i] = arreglo1[i];
 	}
 }
 
-//FUNCION INSERCION BINARIA
-void insercionBinaria( int arreglo[], int capacidad ) {
+//FUNCION INSERCION: INSERCION BINARIA
+void insercionBinaria(int arreglo[], int capacidad) {
 	int aux, izq, der, m;
 	for ( int i = 1; i < capacidad; i++ ) {
 		aux = arreglo[i];
@@ -211,7 +346,7 @@ void insercionBinaria( int arreglo[], int capacidad ) {
 }
 
 //FUNCION METODO DE SHELL
-void metodoShell( int arreglo[], int capacidad ) {
+void metodoShell(int arreglo[], int capacidad) {
 	int aux, k, i, cen;
 	k = capacidad + 1;
 	while ( k > 1 ) {
@@ -230,5 +365,36 @@ void metodoShell( int arreglo[], int capacidad ) {
 				i = i + 1;
 			}
 		}
+	}
+}
+
+//FUNCION INTERCAMBIO DIRECTO: POR LA DERECHA
+void interDirDer(int arreglo[], int capacidad) {
+	int aux;
+	for ( int i = 0; i < capacidad-1; i++ ) {
+		for ( int j = 0; j < capacidad-i-1; j++ ) {
+			if ( arreglo[j] > arreglo[j+1] ) {
+				aux = arreglo[j];
+				arreglo[j] = arreglo[j+1];
+				arreglo[j+1] = aux;
+			}
+		}
+	}
+}
+
+//FUNCION DE SELECCION DIRECTA
+void seleccionDir(int arreglo[], int capacidad) {
+	int menor, k;
+	for ( int i = 0; i < capacidad; i++ ) {
+		menor = arreglo[i];
+		k = i;
+		for ( int j = i + 1; j < capacidad; j++ ) {
+			if ( arreglo[j] < menor ) {
+				menor = arreglo[j];
+				k = j;
+			}
+		}
+		arreglo[k] = arreglo[i];
+		arreglo[i] = menor;
 	}
 }
